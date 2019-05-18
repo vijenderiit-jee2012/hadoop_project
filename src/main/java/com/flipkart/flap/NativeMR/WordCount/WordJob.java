@@ -29,13 +29,15 @@ public class WordJob extends Configured implements Tool {
         FileSystem fs = FileSystem.getLocal(conf);
 
         job.setJarByClass(WordJob.class);
-        job.setOutputKeyClass(Text.class);
+        job.setMapOutputKeyClass(Text.class);
         job.setNumReduceTasks(Integer.parseInt(args[2]));
-        job.setOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(IntWritable.class);
 
         job.setMapperClass(WordMapper.class);
         job.setCombinerClass(WordReducer.class);
         job.setReducerClass(WordReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
 
         return (job.waitForCompletion(true) ? 0 : 1);
     }

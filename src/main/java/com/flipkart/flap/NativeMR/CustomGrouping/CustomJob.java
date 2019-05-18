@@ -35,15 +35,17 @@ public class CustomJob extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job, outputPath);
 
         job.setJarByClass(CustomJob.class);
-        job.setOutputKeyClass(TextTuple.class);
+        job.setMapOutputKeyClass(TextTuple.class);
         job.setNumReduceTasks(Integer.parseInt(args[2]));
-        job.setOutputValueClass(Text.class);
+        job.setMapOutputValueClass(Text.class);
 
         job.setMapperClass(Mapper.class);
         job.setPartitionerClass(SSPartitioner.class);
         job.setSortComparatorClass(SSSortComparator.class);
         job.setGroupingComparatorClass(SSGroupComparator.class);
         job.setReducerClass(Reducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(Text.class);
 
         return (job.waitForCompletion(true) ? 0 : 1);
     }
