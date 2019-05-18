@@ -13,7 +13,7 @@ import org.apache.hadoop.util.Tool;
 
 import java.util.Arrays;
 
-public class WordJob extends Configured implements Tool {
+public class NativeMRWordJob extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
@@ -28,7 +28,7 @@ public class WordJob extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job, outputPath);
         FileSystem fs = FileSystem.getLocal(conf);
 
-        job.setJarByClass(WordJob.class);
+        job.setJarByClass(NativeMRWordJob.class);
         job.setOutputKeyClass(Text.class);
         job.setNumReduceTasks(Integer.parseInt(args[2]));
         job.setOutputValueClass(IntWritable.class);
