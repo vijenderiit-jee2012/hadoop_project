@@ -1,4 +1,4 @@
-package com.flipkart.flap.WordCount;
+package com.flipkart.flap.NativeMR.WordCount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -13,7 +13,7 @@ import org.apache.hadoop.util.Tool;
 
 import java.util.Arrays;
 
-public class NativeMRWordJob extends Configured implements Tool {
+public class WordJob extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
@@ -28,7 +28,7 @@ public class NativeMRWordJob extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job, outputPath);
         FileSystem fs = FileSystem.getLocal(conf);
 
-        job.setJarByClass(NativeMRWordJob.class);
+        job.setJarByClass(WordJob.class);
         job.setOutputKeyClass(Text.class);
         job.setNumReduceTasks(Integer.parseInt(args[2]));
         job.setOutputValueClass(IntWritable.class);

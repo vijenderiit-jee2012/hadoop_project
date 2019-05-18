@@ -1,4 +1,4 @@
-package com.flipkart.flap.WordCount;
+package com.flipkart.flap.NativeMR.WordCount;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
